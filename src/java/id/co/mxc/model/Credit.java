@@ -32,6 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Credit.findAll", query = "SELECT c FROM Credit c")
     , @NamedQuery(name = "Credit.findByCreditId", query = "SELECT c FROM Credit c WHERE c.creditId = :creditId")
     , @NamedQuery(name = "Credit.findByCreditStartDate", query = "SELECT c FROM Credit c WHERE c.creditStartDate = :creditStartDate")
+    , @NamedQuery(name = "Credit.findByCreditDependents", query = "SELECT c FROM Credit c WHERE c.creditDependents = :creditDependents")
+    , @NamedQuery(name = "Credit.findByCreditSalary", query = "SELECT c FROM Credit c WHERE c.creditSalary = :creditSalary")
+    , @NamedQuery(name = "Credit.findByCredjtExtraRevenue", query = "SELECT c FROM Credit c WHERE c.credjtExtraRevenue = :credjtExtraRevenue")
     , @NamedQuery(name = "Credit.findByCreditDuration", query = "SELECT c FROM Credit c WHERE c.creditDuration = :creditDuration")
     , @NamedQuery(name = "Credit.findByCreditBasePrice", query = "SELECT c FROM Credit c WHERE c.creditBasePrice = :creditBasePrice")
     , @NamedQuery(name = "Credit.findByCreditInterestRate", query = "SELECT c FROM Credit c WHERE c.creditInterestRate = :creditInterestRate")
@@ -58,6 +61,17 @@ public class Credit implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "credit_start_date")
     private String creditStartDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "credit_dependents")
+    private int creditDependents;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "credit_salary")
+    private double creditSalary;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "credjt_extra_revenue")
+    private Double credjtExtraRevenue;
     @Basic(optional = false)
     @NotNull
     @Column(name = "credit_duration")
@@ -115,9 +129,11 @@ public class Credit implements Serializable {
         this.creditId = creditId;
     }
 
-    public Credit(Integer creditId, String creditStartDate, int creditDuration, double creditBasePrice, double creditInterestRate, double creditDownPayment, double creditTotal, double creditMonthlyInstallment, String creditStatus, String creditFlag) {
+    public Credit(Integer creditId, String creditStartDate, int creditDependents, double creditSalary, int creditDuration, double creditBasePrice, double creditInterestRate, double creditDownPayment, double creditTotal, double creditMonthlyInstallment, String creditStatus, String creditFlag) {
         this.creditId = creditId;
         this.creditStartDate = creditStartDate;
+        this.creditDependents = creditDependents;
+        this.creditSalary = creditSalary;
         this.creditDuration = creditDuration;
         this.creditBasePrice = creditBasePrice;
         this.creditInterestRate = creditInterestRate;
@@ -142,6 +158,30 @@ public class Credit implements Serializable {
 
     public void setCreditStartDate(String creditStartDate) {
         this.creditStartDate = creditStartDate;
+    }
+
+    public int getCreditDependents() {
+        return creditDependents;
+    }
+
+    public void setCreditDependents(int creditDependents) {
+        this.creditDependents = creditDependents;
+    }
+
+    public double getCreditSalary() {
+        return creditSalary;
+    }
+
+    public void setCreditSalary(double creditSalary) {
+        this.creditSalary = creditSalary;
+    }
+
+    public Double getCredjtExtraRevenue() {
+        return credjtExtraRevenue;
+    }
+
+    public void setCredjtExtraRevenue(Double credjtExtraRevenue) {
+        this.credjtExtraRevenue = credjtExtraRevenue;
     }
 
     public int getCreditDuration() {

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Cash.findAll", query = "SELECT c FROM Cash c")
     , @NamedQuery(name = "Cash.findByCashId", query = "SELECT c FROM Cash c WHERE c.cashId = :cashId")
-    , @NamedQuery(name = "Cash.findByCashPrice", query = "SELECT c FROM Cash c WHERE c.cashPrice = :cashPrice")
+    , @NamedQuery(name = "Cash.findByCashPaid", query = "SELECT c FROM Cash c WHERE c.cashPaid = :cashPaid")
     , @NamedQuery(name = "Cash.findByCashDate", query = "SELECT c FROM Cash c WHERE c.cashDate = :cashDate")
     , @NamedQuery(name = "Cash.findByCashStatus", query = "SELECT c FROM Cash c WHERE c.cashStatus = :cashStatus")
     , @NamedQuery(name = "Cash.findByCashCreatedby", query = "SELECT c FROM Cash c WHERE c.cashCreatedby = :cashCreatedby")
@@ -49,8 +49,8 @@ public class Cash implements Serializable {
     private Integer cashId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "cash_price")
-    private double cashPrice;
+    @Column(name = "cash_paid")
+    private double cashPaid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -89,9 +89,9 @@ public class Cash implements Serializable {
         this.cashId = cashId;
     }
 
-    public Cash(Integer cashId, double cashPrice, String cashDate, String cashStatus, String cashFlag) {
+    public Cash(Integer cashId, double cashPaid, String cashDate, String cashStatus, String cashFlag) {
         this.cashId = cashId;
-        this.cashPrice = cashPrice;
+        this.cashPaid = cashPaid;
         this.cashDate = cashDate;
         this.cashStatus = cashStatus;
         this.cashFlag = cashFlag;
@@ -105,12 +105,12 @@ public class Cash implements Serializable {
         this.cashId = cashId;
     }
 
-    public double getCashPrice() {
-        return cashPrice;
+    public double getCashPaid() {
+        return cashPaid;
     }
 
-    public void setCashPrice(double cashPrice) {
-        this.cashPrice = cashPrice;
+    public void setCashPaid(double cashPaid) {
+        this.cashPaid = cashPaid;
     }
 
     public String getCashDate() {

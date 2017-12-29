@@ -6,7 +6,6 @@
 package id.co.mxc.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,10 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Customer.findByCustomerName", query = "SELECT c FROM Customer c WHERE c.customerName = :customerName")
     , @NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT c FROM Customer c WHERE c.customerEmail = :customerEmail")
     , @NamedQuery(name = "Customer.findByCustomerTelepon", query = "SELECT c FROM Customer c WHERE c.customerTelepon = :customerTelepon")
-    , @NamedQuery(name = "Customer.findByCustomerDob", query = "SELECT c FROM Customer c WHERE c.customerDob = :customerDob")
-    , @NamedQuery(name = "Customer.findByCustomerTanggungan", query = "SELECT c FROM Customer c WHERE c.customerTanggungan = :customerTanggungan")
-    , @NamedQuery(name = "Customer.findByCustomerGaji", query = "SELECT c FROM Customer c WHERE c.customerGaji = :customerGaji")
-    , @NamedQuery(name = "Customer.findByCustomerPenghasilanTambahan", query = "SELECT c FROM Customer c WHERE c.customerPenghasilanTambahan = :customerPenghasilanTambahan")
     , @NamedQuery(name = "Customer.findByCustomerUpdatedby", query = "SELECT c FROM Customer c WHERE c.customerUpdatedby = :customerUpdatedby")
     , @NamedQuery(name = "Customer.findByCustomerCreatedby", query = "SELECT c FROM Customer c WHERE c.customerCreatedby = :customerCreatedby")
     , @NamedQuery(name = "Customer.findByCustomerCreatedtime", query = "SELECT c FROM Customer c WHERE c.customerCreatedtime = :customerCreatedtime")
@@ -78,22 +71,6 @@ public class Customer implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "customer_telepon")
     private String customerTelepon;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "customer_dob")
-    @Temporal(TemporalType.DATE)
-    private Date customerDob;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "customer_tanggungan")
-    private int customerTanggungan;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "customer_gaji")
-    private double customerGaji;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "customer_penghasilan_tambahan")
-    private Double customerPenghasilanTambahan;
     @Size(max = 50)
     @Column(name = "customer_updatedby")
     private String customerUpdatedby;
@@ -121,15 +98,12 @@ public class Customer implements Serializable {
         this.customerId = customerId;
     }
 
-    public Customer(Integer customerId, String customerName, String customerEmail, String customerAddress, String customerTelepon, Date customerDob, int customerTanggungan, double customerGaji, String customerFlag) {
+    public Customer(Integer customerId, String customerName, String customerEmail, String customerAddress, String customerTelepon, String customerFlag) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
         this.customerTelepon = customerTelepon;
-        this.customerDob = customerDob;
-        this.customerTanggungan = customerTanggungan;
-        this.customerGaji = customerGaji;
         this.customerFlag = customerFlag;
     }
 
@@ -171,38 +145,6 @@ public class Customer implements Serializable {
 
     public void setCustomerTelepon(String customerTelepon) {
         this.customerTelepon = customerTelepon;
-    }
-
-    public Date getCustomerDob() {
-        return customerDob;
-    }
-
-    public void setCustomerDob(Date customerDob) {
-        this.customerDob = customerDob;
-    }
-
-    public int getCustomerTanggungan() {
-        return customerTanggungan;
-    }
-
-    public void setCustomerTanggungan(int customerTanggungan) {
-        this.customerTanggungan = customerTanggungan;
-    }
-
-    public double getCustomerGaji() {
-        return customerGaji;
-    }
-
-    public void setCustomerGaji(double customerGaji) {
-        this.customerGaji = customerGaji;
-    }
-
-    public Double getCustomerPenghasilanTambahan() {
-        return customerPenghasilanTambahan;
-    }
-
-    public void setCustomerPenghasilanTambahan(Double customerPenghasilanTambahan) {
-        this.customerPenghasilanTambahan = customerPenghasilanTambahan;
     }
 
     public String getCustomerUpdatedby() {
