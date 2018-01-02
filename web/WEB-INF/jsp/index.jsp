@@ -53,7 +53,7 @@
                     ${x.creditStatus}
                 </td>
                 <td>
-                    <a href="/ProjectFinance/index/delete/${x.creditId}"><button>DELETE</button></a> <a><button>EDIT</button></a>
+                    <a href="/ProjectFinance/index/delete/${x.creditId}"><button>DELETE</button></a><a href="/ProjectFinance/index/edit/${x.creditId}"><button>EDIT</button></a>
                 </td>
             </tr>
         </c:forEach>
@@ -97,7 +97,7 @@
                     ${x.creditStatus}
                 </td>
                 <td>
-                    <a href="/ProjectFinance/index/approve/${x.creditId}"><button>APPROVE</button></a> <a href="/ProjectFinance/index/delete/${x.creditId}"><button>DELETE</button></a> <a><button>EDIT</button></a>
+                    <a href="/ProjectFinance/index/approve/${x.creditId}"><button>APPROVE</button></a><a href="/ProjectFinance/index/delete/${x.creditId}"><button>DELETE</button></a><a href="/ProjectFinance/index/edit/${x.creditId}"><button>EDIT</button></a>
                 </td>
             </tr>
         </c:forEach>

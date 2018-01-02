@@ -70,6 +70,14 @@ public class AdminDAO {
         em.close();
     }
     
+    public void saveCredit(Credit credit){
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(credit);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
     
     
     public List<Credit> showCreditApproved(){
